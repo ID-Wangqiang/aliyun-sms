@@ -79,7 +79,7 @@
 		//页面加载完成的时候就会调用
 		window.onload = function()
 		{
-			document.getElementById("applyBtn").disabled = true;
+			document.getElementById("applyBtn").disabled = false;
 		}
 		
 		function timer()
@@ -87,7 +87,7 @@
 			if(time == 0)
 			{
 				//layer.msg("成功");	
-				time = 30;
+				time = 60;
 				$("#sms-input").val("获取验证码");
 				document.getElementById("sms-input").disabled = false
 				//删除定时器
@@ -121,15 +121,14 @@
 				//回调
 				function(data)
 				{
-					if(data.message)
+					if(data.success)
 					{
 						$("#lain_username").val(telephone)
 						layer.msg("验证码发送成功~请注意查收~")
 						sms = data.sms;						
 					}else{
-						layer.msg("该手机号已被注册~")		
+						layer.msg(data.message)
 					}
-					
 				},
 				//数据格式
 				"json"
@@ -154,13 +153,11 @@
 						//回调
 						function(data)
 						{
-							if(data.message)
+							if(data.success)
 							{
 								layer.msg("验证码正确");
-								document.getElementById("applyBtn").disabled = false;
 							}else{
-								layer.msg("验证码输入有误，请重新输入")
-								$("#sms-code").focus();
+								layer.msg(data.message)
 							}
 
 						},
@@ -169,35 +166,6 @@
 			)
 		}
 
-		// //验证码的离焦事件
-		// $("#sms-code").blur(function(){
-		//
-		// 	//判断验证码是否正确
-		// 	var telephone = $("#phone").val();
-		// 	var code = $("#sms-code").val();
-		// 	//发送Ajax请求
-		// 	$.post(
-		// 			//发送的url
-		// 			[[@{~/validate}]],
-		// 				//数据
-		// 				{"phone":telephone,"code":code},
-		// 				//回调
-		// 				function(data)
-		// 				{
-		// 					if(data.message)
-		// 					{
-		// 						layer.msg("验证码正确");
-		// 						document.getElementById("applyBtn").disabled = false;
-		// 					}else{
-		// 						layer.msg("验证码输入有误，请重新输入")
-		// 						$("#sms-code").focus();
-		// 					}
-		//
-		// 				},
-		// 				//数据格式
-		// 				"json"
-		// 	)
-		// });
 
 	</script>
 </body>
