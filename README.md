@@ -11,7 +11,7 @@ JDK8
 Redis   
 
 ### 如何运行
-1、git clone https://github.com/ID-WangQiang/aliyun-sms.git   
+1、git clone https://github.com/ID-Wangqiang/aliyun-sms.git   
 2、用IDEA打开项目，在配置文件application.properties中填写AccessKey、AccessSecret、阿里云短板模版Code  
 3、运行AliyunSmsApplication.java文件，访问localhost:8080/send/{手机号}
 
