@@ -1,19 +1,33 @@
 ### 项目介绍
-阿里云短信验证码的实例。
+简单验证码系统，主要实现了以下需求：验证码默认为6位随机纯数字;验证码默认有效期为2分钟;每个手机号码60秒内只能发送1次验证码;保存于服务端的验证码最多可以被使用3次，随后作废，无论正确与否，以防止暴力破解。
+
+![image-20211231154821172](https://cdn.jsdelivr.net/gh/ID-Wangqiang/MyBlogImg/img/202112311548868.png)
 
 ### 技术工具
-项目采用SpringBoot构建。
-涉及到的其他技术工具有阿里云短信服务，fastjson。
+项目后端采用SpringBoot框架，Redis 用作短信验证码的缓存，前端采用Thymeleaf模板简单展示功能，涉及到的其他技术工具有阿里云短信服务，Fastjson。
 
 ### 开发环境
-Mac  IDEA  
-JDK8   
-Redis   
+- IDEA  
+- JDK8   
+- Redis
+- Maven   
 
 ### 如何运行
-1、git clone https://github.com/ID-Wangqiang/aliyun-sms.git   
-2、用IDEA打开项目，在配置文件application.properties中填写AccessKey、AccessSecret、阿里云短板模版Code  
-3、运行AliyunSmsApplication.java文件，访问localhost:8080/send/{手机号}
+1. git clone git@github.com:ID-Wangqiang/aliyun-sms.git   
+
+2. 用IDEA打开项目
+
+   - 如需引用阿里云的短信服务，在配置文件application.properties中填写AccessKey、AccessSecret、阿里云短板模版Code （可选）
+
+   ![image-20211231155618264](https://cdn.jsdelivr.net/gh/ID-Wangqiang/MyBlogImg/img/202112311556304.png)
+
+   并在代码中取消注释
+
+   ![image-20211231155749530](https://cdn.jsdelivr.net/gh/ID-Wangqiang/MyBlogImg/img/202112311557571.png)
+
+   
+
+3. 运行AliyunSmsApplication.java文件，浏览器访问localhost:8080即可展示前端页面
 
 ### 参考资料
 [阿里云短信服务](https://help.aliyun.com/product/44282.html)  

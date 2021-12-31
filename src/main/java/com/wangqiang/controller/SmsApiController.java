@@ -64,16 +64,15 @@ public class SmsApiController {
         //生成纯6位数字验证码并存储redis
         String code = String.valueOf((Math.random() * 9 + 1) * 1000000).toString().substring(0, Integer.valueOf(randomCodeNumber));
 
-
-
         // 阿里云短信发送服务
         HashMap<String, Object> map = new HashMap<>();
         map.put("code",code);
-
         logger.warn("手机号："+phone+" 验证码：" + code);
-        // 暂时不引用阿里云服务
+        // 引用阿里云短信服务
 //        boolean isSend = sendSms.send(phone, map);
-        if (true){
+        // 不引用阿里云短信服务
+        boolean isSend = true;
+        if (isSend){
             // 验证码有效期分钟
             redisTemplate.opsForValue().set(phone,code, Long.valueOf(expiryTime),TimeUnit.MINUTES);
             // 每个手机号60秒只能发送1次验证码
